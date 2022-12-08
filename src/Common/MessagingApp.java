@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface MessagingApp extends Remote
 {
-    List<Account> Accounts = null;
     int createAccount(String username) throws RemoteException;
+    boolean login(int authToken) throws RemoteException;
     ArrayList<Account> showAccounts(Integer authToken) throws RemoteException;
     boolean sendMessage(Integer authToken,String receiver,String body) throws RemoteException;
     ArrayList<Message> showInbox(Integer authToken) throws RemoteException;

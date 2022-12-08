@@ -1,24 +1,28 @@
 package Common;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Account implements java.io.Serializable
 {
     String username;
     int authToken;
-    List<Message> messageBox;
+    ArrayList<Message> messageBox;
     public Account(String username, int authToken)
     {
         this.username = username;
         this.authToken = authToken;
-        messageBox = null;
+        messageBox = new ArrayList<>();
     }
     public String getUsername()
     {
         return username;
     }
-    int getAuthToken()
+    public boolean authenticate(int authToken)
     {
-        return authToken;
+        return this.authToken == authToken;
+    }
+    public ArrayList<Message> getInbox()
+    {
+        return messageBox;
     }
 }

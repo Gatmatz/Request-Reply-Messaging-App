@@ -16,7 +16,7 @@ public class MessagingServer
             //Launch Messaging App
             RemoteMessagingApp app = new RemoteMessagingApp();
 
-            //Create RMI Registry
+            //Create RMI Registry/Stub
             Registry rmiRegistry = LocateRegistry.createRegistry(port);
 
             //path to access is rmi://localhost:port/messenger
