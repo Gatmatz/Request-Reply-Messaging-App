@@ -17,7 +17,6 @@ public class MessagingClient
             String IP = String.valueOf(args[0]);
             Integer port = Integer.valueOf(args[1]);
             Integer FN_ID = Integer.valueOf(args[2]);
-            String arguments = String.valueOf(args[3]);
 
             //Connect to RMI Registry
             Registry rmiController = LocateRegistry.getRegistry(port);
@@ -25,11 +24,18 @@ public class MessagingClient
             //Get reference for remote control
             MessagingApp messenger = (MessagingApp) rmiController.lookup("messenger");
 
+            //Initialize helpful variables
+            int authToken,product;
+            String username,recipient,body;
+            boolean status;
+
             //Select between functions
             switch (FN_ID)
             {
+                //Create Account
                 case 1:
-                    int product = messenger.createAccount(arguments);
+                    username = String.valueOf(args[3]);
+                    product = messenger.createAccount(username);
                     if (product == 1)
                         System.out.println("Sorry, the user already exists");
                     else if (product == -1)
@@ -37,38 +43,52 @@ public class MessagingClient
                     else
                         System.out.println(product);
                     break;
+                //Show Accounts
                 case 2:
-                    ArrayList<Account> Accounts = messenger.showAccounts(Integer.valueOf(arguments));
+                    authToken = Integer.parseInt(args[3]);
+                    ArrayList<Account> Accounts = messenger.showAccounts(authToken);
                     if (!(Accounts.isEmpty()))
                     {
                         for (int i = 0;i<Accounts.size();i++)
                             System.out.println(i+1+"."+ Accounts.get(i).getUsername()+"\n");
                     }
                     break;
+                //Send Message
                 case 3:
-                    boolean status = messenger.sendMessage(Integer.valueOf(arguments));
+                    authToken = Integer.parseInt(args[3]);
+                    recipient = String.valueOf(args[4]);
+                    body = String.valueOf(args[5]);
+                    status = messenger.sendMessage(authToken,recipient,body);
                     if (status)
                         System.out.println("OK");
                     else
                         System.out.println("User does not exist");
                     break;
+                //Show Inbox
                 case 4:
-                    ArrayList<Message> inbox = messenger.showInbox(Integer.valueOf(arguments));
+                    authToken = Integer.parseInt(args[3]);
+                    ArrayList<Message> inbox = messenger.showInbox(authToken);
                     break;
+                //Read Message
                 case 5:
-                    Message message = messenger.readMessage(Integer.valueOf(arguments));
+                    authToken = Integer.parseInt(args[3]);
+                    int message_id = Integer.parseInt(args[4]);
+                    Message message = messenger.readMessage(authToken,message_id);
                     if (message != null)
                         System.out.println("("+message.getSender()+")"+message.getBody());
                     else
                         System.out.println("Message ID does not exist");
                     break;
+                //Delete Message
                 case 6:
-                    status = messenger.deleteMessage(Integer.valueOf(arguments));
+                    authToken = Integer.parseInt(args[3]);
+                    message_id = Integer.parseInt(args[4]);
+                    status = messenger.deleteMessage(authToken,message_id);
                     if (status)
                         System.out.println("OK");
                     else
                         System.out.println("Message does not exist");
-
+                    break;
             }
         }
         catch (Exception e)

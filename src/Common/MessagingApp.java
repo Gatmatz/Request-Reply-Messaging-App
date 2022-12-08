@@ -11,6 +11,6 @@ public interface MessagingApp extends Remote
     ArrayList<Account> showAccounts(Integer authToken) throws RemoteException;
     boolean sendMessage(Integer authToken,String receiver,String body) throws RemoteException;
     ArrayList<Message> showInbox(Integer authToken) throws RemoteException;
-    Message readMessage(Integer authToken) throws RemoteException;
-    boolean deleteMessage(Integer authToken) throws RemoteException;
+    Message readMessage(Integer authToken, Integer message_id) throws RemoteException;
+    boolean deleteMessage(Integer authToken, Integer message_id) throws RemoteException;
 }

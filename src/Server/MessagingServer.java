@@ -11,7 +11,7 @@ public class MessagingServer
         try
         {
             //Get port number
-            Integer port = Integer.valueOf(args[0]);
+            int port = Integer.parseInt(args[0]);
 
             //Launch Messaging App
             RemoteMessagingApp app = new RemoteMessagingApp();

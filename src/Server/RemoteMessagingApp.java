@@ -10,7 +10,7 @@ import java.util.List;
 
 public class RemoteMessagingApp extends UnicastRemoteObject implements MessagingApp
 {
-    List<Account> Accounts;
+    ArrayList<Account> Accounts;
     public RemoteMessagingApp() throws RemoteException
     {
         super();
@@ -18,13 +18,14 @@ public class RemoteMessagingApp extends UnicastRemoteObject implements Messaging
     }
 
     @Override
-    public int createAccount(String username) throws RemoteException {
+    public int createAccount(String username) throws RemoteException
+    {
         return 0;
     }
 
     @Override
     public ArrayList<Account> showAccounts(Integer authToken) throws RemoteException {
-        return null;
+        return Accounts;
     }
 
     @Override
@@ -38,12 +39,12 @@ public class RemoteMessagingApp extends UnicastRemoteObject implements Messaging
     }
 
     @Override
-    public Message readMessage(Integer authToken) throws RemoteException {
+    public Message readMessage(Integer authToken, Integer message_id) throws RemoteException {
         return null;
     }
 
     @Override
-    public boolean deleteMessage(Integer authToken) throws RemoteException {
+    public boolean deleteMessage(Integer authToken, Integer message_id) throws RemoteException {
         return false;
     }
 }
