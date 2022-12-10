@@ -1,3 +1,8 @@
+/*
+    Messaging application implementation interface.
+    Author: Georgios Atmatzidis
+    AEM: 3908
+ */
 package Common;
 
 import java.rmi.*;

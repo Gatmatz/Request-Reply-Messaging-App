@@ -1,3 +1,8 @@
+/*
+    Messaging application class implementating the messaging interface.
+    Author: Georgios Atmatzidis
+    AEM: 3908
+ */
 package Server;
 
 import Common.Account;
@@ -112,7 +117,10 @@ public class RemoteMessagingApp extends UnicastRemoteObject implements Messaging
     }
 
     @Override
-    public boolean deleteMessage(Integer authToken, Integer message_id) throws RemoteException {
-        return false;
+    public boolean deleteMessage(Integer authToken, Integer message_id) throws RemoteException
+    {
+        Account user = authenticate(authToken);
+        ArrayList<Message> inbox = user.getInbox();
+        return user.deleteMessage(message_id);
     }
 }

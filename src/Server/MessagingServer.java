@@ -1,3 +1,8 @@
+/*
+    Server implementation class.
+    Author: Georgios Atmatzidis
+    AEM: 3908
+ */
 package Server;
 
 import Common.MessagingApp;
