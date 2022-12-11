@@ -38,36 +38,52 @@ public class Message implements java.io.Serializable
      */
     int generateID(String receiver, String body)
     {
+        //Get receiver's name as a sum of bytes.
         byte [] bytes = receiver.getBytes();
         int key = 0;
         for (byte aByte : bytes)
         {
             key += aByte;
         }
+        //Get message's body as a sum of bytes.
         bytes = body.getBytes();
         for (byte aByte : bytes)
         {
             key += aByte;
         }
-        int size = 53;
         return key%97;
     }
+    /*
+    Function that returns the receiver's name as a String.
+     */
     public String getReceiver()
     {
         return receiver;
     }
+    /*
+    Function that return the message's body as a String.
+     */
     public String getBody()
     {
         return body;
     }
+    /*
+    Function that returns if the message is read or not.
+     */
     public boolean messageStatus()
     {
         return isRead;
     }
+    /*
+    Function that returns the message's ID as an integer.
+     */
     public int getID()
     {
         return messageID;
     }
+    /*
+    Function that reads a message(changes isRead variable to true).
+     */
     public void read()
     {
         isRead = true;
