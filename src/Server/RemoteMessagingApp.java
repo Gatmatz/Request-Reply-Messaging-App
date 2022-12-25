@@ -35,8 +35,7 @@ public class RemoteMessagingApp extends UnicastRemoteObject implements Messaging
         {
             key += aByte;
         }
-        int size = 53;
-        return key%size;
+        return key%53;
     }
     /*
     Check if a user exists using the given authentication token.
@@ -70,7 +69,7 @@ public class RemoteMessagingApp extends UnicastRemoteObject implements Messaging
         if (!(checkUsername(username)))
             return -1;
         else if (authenticate(new_token) != null)
-            return 1;
+            return -2;
         else
         {
             Account new_user = new Account(username,new_token);
@@ -95,7 +94,7 @@ public class RemoteMessagingApp extends UnicastRemoteObject implements Messaging
     Returns an ArrayList of Accounts if authToken is valid, null otherwise.
      */
     @Override
-    public ArrayList<Account> showAccounts(Integer authToken) throws RemoteException
+    public ArrayList<Account> showAccounts() throws RemoteException
     {
         return Accounts;
     }

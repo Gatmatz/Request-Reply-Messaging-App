@@ -20,7 +20,7 @@ public class MessagingClient
         try
         {
             //Get specific arguments from args array
-            String IP = String.valueOf(args[0]);
+            String IP = args[0];
             int port = Integer.parseInt(args[1]);
             int FN_ID = Integer.parseInt(args[2]);
 
@@ -45,7 +45,7 @@ public class MessagingClient
                     //Try to create account in stub object.
                     product = messenger.createAccount(username);
                     //Check the different cases
-                    if (product == 1) //User exists
+                    if (product == -2) //User exists
                         System.out.println("Sorry, the user already exists");
                     else if (product == -1) //Invalid username
                         System.out.println("Invalid Username");
@@ -60,7 +60,7 @@ public class MessagingClient
                     if (messenger.login(authToken))
                     {
                         //Get account list from stub object
-                        ArrayList<Account> Accounts = messenger.showAccounts(authToken);
+                        ArrayList<Account> Accounts = messenger.showAccounts();
                         //Print out the list with specific format
                         for (int i = 0;i<Accounts.size();i++)
                             System.out.println(i+1+"."+ Accounts.get(i).getUsername());
@@ -129,7 +129,7 @@ public class MessagingClient
                         //Print out message
                         if (message != null) //If message exists
                             System.out.println("("+message.getSender()+")"+message.getBody());
-                        else //If message does not exists
+                        else //If message does not exist
                             System.out.println("Message ID does not exist");
                     }
                     else //If the user does not exist
@@ -160,7 +160,7 @@ public class MessagingClient
         catch (Exception e) //Catch any exception
         {
             //Print out the exception stack
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 }

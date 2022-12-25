@@ -5,7 +5,6 @@
  */
 package Server;
 
-import Common.MessagingApp;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
@@ -30,7 +29,7 @@ public class MessagingServer
         }
         catch (Exception e)
         {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 }

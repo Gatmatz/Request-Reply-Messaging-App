@@ -23,7 +23,7 @@ public interface MessagingApp extends Remote
     Function signature that shows all accounts of system using an authentication token.
     Returns an ArrayList of Accounts if authToken is valid, null otherwise.
      */
-    ArrayList<Account> showAccounts(Integer authToken) throws RemoteException;
+    ArrayList<Account> showAccounts() throws RemoteException;
     /*
     Function signature that sends a message(body) to a receiver using an authentication token.
     Returns true if sending was successful, false otherwise.
