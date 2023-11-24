@@ -1,7 +1,3 @@
-# Student Info
-**Name**:Atmatzidis Georgios <br />
-**AEM**:3908
-
 # Project Specifications
 Η εργασία Request-Reply Messaging App έχει υλοποιηθεί με την τεχνολογία RMI.
 
